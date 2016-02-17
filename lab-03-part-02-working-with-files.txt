@@ -1,4 +1,4 @@
-Lab - Working With Files
+Lab - Permissions, Editing Text, Date and Time
 ==========
 Follow the instructions line-by-line.  
 
@@ -7,207 +7,150 @@ Follow the instructions line-by-line.
 * "No output" or "nothing happens" are valid answers to any of the questions.
 ==========
 
+
 ==========
-1. Open a new terminal window.
-[NO OUTPUT]
+We're going to be writing a shell script.  First, though... let's figure out what day and time it is!
+==========
+
+==========
+1. What day and time is it?
+
+What command did you use, and what was its output?
 ----------
-==========
-2. Find out if mtec1003-lab-03 already exists (from the previous lab).  If it doesn't, go back to the previous lab and find the steps regarding downloading the lab materials.
+date
+Wed Feb 17 12:17:05 EST 2016
 
-(See steps 1-8 in http://entertainmenttechnology.github.io/Wilson-MTEC1003/labs/03/lab-03-part-02-working-with-files.txt)
-[NO OUTPUT]
+
+==========
+2. Print out a calendar for this month.
+
+What command did you use, and what was its output?
 ----------
+cal
+ February 2016
+Su Mo Tu We Th Fr Sa
+    1  2  3  4  5  6
+ 7  8  9 10 11 12 13
+14 15 16 17 18 19 20
+21 22 23 24 25 26 27
+28 29
+
+
 ==========
-3. Change your directory mtec1003-lab-03
-[NO OUTPUT]
+3. Go to your home directory.  Verify that you're in your home directory.
+
+What commands did you use to do this?
 ----------
+cd ~
+pwd
+
+
 ==========
-4. Create a directory called my_files
-[NO OUTPUT]
+4. Create an empty file called copy_to_backup.sh.  Verify that the file exists.
+
+What commands did you use to do this?
 ----------
+touch copy_to_backup.sh
+ls
+
+
 ==========
-5. Change the directory to my_files
-[NO OUTPUT]
+5. What are the permissions on your copy_to_backup.sh.
+
+What command did you use to find the permissions?
 ----------
-==========
-6. Create a new file using touch.
+ls -l copy_to_backup.sh
+-rw-r--r--  1 student  staff  0 Feb 17 12:19 copy_to_backup.sh
 
-$ touch foo.txt
-$ ls
-Copy and paste the output below.
+==========
+6. Change the permissions so that this file is executable by the user.  Verify the new permissions.
+
+What commands did you use to do this?  What was the output?
 ----------
-foo.txt
+chmod u+x copy_to_backup.sh
 
 
 ==========
-7. Create another new file using touch.
+7. Try executing the file!
 
-$ touch bar.txt
+$ ./copy_to_backup.sh
+
+What command did you use to try to execute the file?  What happens?
 ----------
-
-
-
-==========
-8. List the files in this directory using the flag that gives the most details.
-
-Copy and paste the output below.
-----------
-ls -lat
-total 0
-drwxr-xr-x  4 student  staff  136 Feb 17 11:13 .
--rw-r--r--  1 student  staff    0 Feb 17 11:13 bar.txt
--rw-r--r--  1 student  staff    0 Feb 17 11:13 foo.txt
-drwxr-xr-x  7 student  staff  238 Feb 17 11:12 ..
-
+bash copy_to_backup.sh
+nothing happened
 
 
 ==========
-9. Create a copy of bar.txt called baz.txt and then list the files again.
+8. Open the file with nano
 
-
-Write the command that you used to copy the file.  Additionally, copy and paste the output of your file listing below.
-----------
-cp bar.txt baz.txt
-ent-v314-015:my_files student$ ls
-bar.txt	baz.txt	foo.txt
-
-
-
-==========
-10. Delete the file called bar.txt and then list the files again.
-
-Write the command that you used to remove the file.  Copy and paste the output of your file listing below.
-----------
-rm bar.txt
-ent-v314-015:my_files student$ ls
-baz.txt	foo.txt
-
-
-==========
-11. Move the file called foo.txt to qux.txt and then list the files again.
-
-
-Write the command that you used to move the file.  Copy and paste the output of your file listing below.
-----------
-mv foo.txt qux.txt
-ent-v314-015:my_files student$ ls
-baz.txt	qux.txt
-
-
-
-==========
-12. Go up one directory so that you're in ~/mtec1003-lab-03.
-[NO OUTPUT]
+What command did you use to do this?
 ----------
 
-
+nano copy_to_backup.sh
 
 ==========
-13. Try removing the directory called my_files using rmdir.
+9. In your file, write the commands to do the following
 
-Write out the command that you used and what happened.
+a. create a directory called backup 
+b. copy all of the txt files in the current directory to the backup directory (use *.txt)
+c. print out "I'm done backing up"
+
+Don't forget the first line of your shell script! It should begin with #!/bin/bash)!
+
+Write out the code in your file below...
 ----------
-rmdir my_files
-rmdir: my_files: Directory not empty
+#!/bin/bash
 
+mkdir backup
+cp *.txt backup
+echo "I'm done backing up"
 
 
 ==========
-14. Try removing the directory called my_files using rm.
-
-Write out the command that you used and what happened.
-----------
-rm my_files
-rm: my_files: is a directory
-
-==========
-15. MAKE SURE YOU'RE IN THE mtec1003-lab-03 directory!  
-
-Force the removal of the directory and files using the -rf flag
-
-$ rm -rf my_files
+10. Create a directory in your home called test
 ----------
 
 
 
 ==========
-16. There's a txt file version of a book located in the mtec1003-lab-03 folder.  It is in the following directory if you're in the lab folder:
+11. Go into that directory and create two empty files... 1.txt and 2.txt
 
-books/other/pg1232.txt
-
-Use the command called cat on the file to show its contents. 
-
-Describe what happened below.
+What commands did you use to do this?
 ----------
-it opened the txt file inside the console 
-
-==========
-17. That was a lot of text.  Let's find ways to limit it.  Using the same file...
-
-books/other/pg1232.txt
-
-Use the command, head, on the file to show the contents of the beginning of the file.  
-
-Write the command that you used below.  Write the last line of the output below (it should be the title).
-----------
-
-Title: The Prince
-
-==========
-18. Using the same file again!
-
-books/other/pg1232.txt
-
-Use tail on the file to show the contents of the end of the file.  
-
-Write the command that you used below.  Write the last line of the output below.
-----------
-subscribe to our email newsletter to hear about new eBooks.
-
+touch 1.txt 2.txt
 
 
 ==========
-19. Using the same file...
+12. Move the script that you created into this directory.
 
-books/other/pg1232.txt
-
-Use less and more on the file to show the contents of the file.  Try pressing spacebar and/or q afterwards.
-
-Write the command that you used below.  Describe what spacebar and q does after using either less or more.
+What commands did you use to do this?
 ----------
-less books/other/pg1232.txt
-more books/other/pg1232.txt
-
-space let me scroll through the text while q exited out of the scrolling 
+cd ~
+mv copy_to_backup.sh test
 
 
 ==========
-20. Describe what situations you would use the following commands for viewing files: less, more, cat, tail, head
+13. Run your script.
 
-(Some characteristics that may help your description might be the length of the file, whether or not you'd like to read the whole thing... or just the beginning or end, etc.)
+What commands did you use to do this?
 ----------
-if you have a small document to look at, the cat command would be the most useful because it would display everything all on one screen. the head/tail would be useful if you’re looking for something towards the end or beginning of the file. Less or more would depend on how much of the file would you like to see at a time.
 
+bash copy_to_backup.sh 
 
 ==========
-21.  How many words are in pg1232.txt?  What command did you use to determine the word count?
+14. Verify that a backup folder was created in your test directory... with copies of the files present.
+
+What commands did you use to do this?  Show the output.
+
 ----------
-52639
-wc -w books/other/pg1232.txt
+ls
+cd backup
+ls
 
+ls
+1.txt			2.txt			backup			copy_to_backup.sh
+ent-v314-015:test student$ cd backup
+ent-v314-015:backup student$ ls
+1.txt	2.txt
 
-
-==========
-22.  How many lines are in pg1232.txt?  What command did you use to determine the line count?
-----------
-5063
-wc -l books/other/pg1232.txt
-
-==========
-OPTIONAL
-
-23.  Make sure you're in the books/other folder.  Copy all of the txt files from that folder to your home directory using wildcard matching.
-
-Write the command that you used below.
-cp *.txt ~
-----------
